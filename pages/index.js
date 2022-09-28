@@ -16,9 +16,7 @@ export default function Home() {
       </Head>
       <Header titulo='Control de Invitados' />
       <div className='nav'>
-        <Link href='/admin/listaInvitados'><a className='enlace'>Editar Lista de invitados</a></Link>
-        <Link href='/editarGrupos'><a className='enlace'>Editar Grupos</a></Link>
-        <Link href='/editarMesas'><a className='enlace'>Editar Mesas</a></Link>
+        <Link href='/listaInvitados'><a className='enlace'>Editar Lista de invitados</a></Link>
       </div>
       
     </div>
