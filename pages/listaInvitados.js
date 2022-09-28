@@ -7,7 +7,7 @@ const ListaInvitados = ({ titulo }) => {
     const [invitados, setInvitados] = useState([]);
 
     const listarInvitados = async()=>{
-    const result = await axios.get('http://www.goweddings.net:3001/admin/lista-invitados');
+    const result = await axios.get('http://localhost:3001/admin/lista-invitados');
 
     const listaOrdenada = result.data.sort((a, b)=>{
         return a.id-b.id;
@@ -63,9 +63,9 @@ const ListaInvitados = ({ titulo }) => {
 
     const guardarInvitado = async ( obj, dato )=>{
         if(dato == 'grupo'){
-            const result = await axios.put(`http://www.goweddings.net:3001/admin/lista-invitados/grupo/${obj.id}`, obj );
+            const result = await axios.put(`http://localhost:3001/admin/lista-invitados/grupo/${obj.id}`, obj );
         }else{
-            const result = await axios.put(`http://www.goweddings.net:3001/admin/lista-invitados/mesa/${obj.id}`,obj);
+            const result = await axios.put(`http://localhost:3001/admin/lista-invitados/mesa/${obj.id}`,obj);
         }
 
     }
