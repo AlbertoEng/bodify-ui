@@ -8,7 +8,6 @@ const ListaInvitados = ({ titulo }) => {
 
     const listarInvitados = async()=>{
     const result = await axios.get('http://www.goweddings.net/admin/lista-invitados');
-
     const listaOrdenada = result.data.sort((a, b)=>{
         return a.id-b.id;
     })
