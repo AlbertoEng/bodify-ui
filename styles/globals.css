@@ -20,6 +20,7 @@ a {
   box-sizing: border-box;
 }
 
+
 .titulo{
   text-align: center;
   background-color: #294db9ce;
@@ -27,6 +28,36 @@ a {
   padding: 10px;
   height: 60px;
   font-size: 20px;
+}
+
+.containerInputs{
+  width: 100%;  
+  display: flex;
+  margin-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.camposForm{
+  flex: 1;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 5px grey;
+}
+
+.botonAgregar{
+  background-color: rgb(148, 37, 251);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 0px 10px black ;
+}
+
+.botonAgregar:hover{
+  cursor: pointer;
+  background-color: rgb(110, 22, 192);
 }
 
 .nav{
@@ -67,6 +98,7 @@ body {
 .nombreInvitado{
   display: flex;
   justify-content: space-between;
+  height: 100%;
 }
 
 .listaInvitados{
@@ -76,7 +108,10 @@ body {
   margin-right: auto;
 
 }
-
+form{
+  width: 100%;
+  display: flex;
+}
 input {
   padding: 10px;
   margin-right: 10px;
@@ -117,6 +152,7 @@ input {
 .divBotones {
   display: flex;
   align-items: center;
+
 }
 
 .boton {
@@ -153,6 +189,7 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-content: center;
   }
 }
 
@@ -163,12 +200,36 @@ input {
   }
   .listaInvitados{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .card-invitado{
-    width: 100%;
+    width: 95%;
     display: block;
+    margin-bottom: 5px;
   }
   input{
     width: 100px;
+  }
+  .containerInputs{
+    display: block;
+    position: sticky;
+    top:0px;
+  }
+  .camposForm{
+    width: 100%;
+    margin-top: 5px;
+  }
+  form{
+    width: 100%;
+    display: block;
+  }
+  .botonAgregar{
+    padding: 10px;
+    margin: 5px;
+  }
+  .divBotones{
+    justify-content: space-between;
   }
 }
