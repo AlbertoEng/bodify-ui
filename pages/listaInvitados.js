@@ -10,11 +10,11 @@ const ListaInvitados = ({ titulo }) => {
     const [grupo, setGrupo] = useState(null);
 
     const listarInvitados = async()=>{
-    const result = await axios.get('http://www.goweddings.net/admin/lista-invitados');
-    const listaOrdenada = result.data.sort((a, b)=>{
-        return a.id-b.id;
-    })
-    setInvitados(listaOrdenada)
+        const result = await axios.get('http://www.goweddings.net/admin/lista-invitados');
+        const listaOrdenada = result.data.sort((a, b)=>{
+            return a.id-b.id;
+        })
+        setInvitados(listaOrdenada)
     }
 
     useEffect(()=>{
@@ -72,29 +72,39 @@ const ListaInvitados = ({ titulo }) => {
 
     }
 
-    const handleNuevoInvitado = e =>{
-        e.preventDefault();
-        
+    const handleNombre = ( e )=>{
+        setNombre(e.target.value)
+    }
 
+    const handleGrupo = (e) =>{
+        setGrupo(e.target.value);
+    }
+
+    const handleMesa = (e) => {
+        setMesa(e.target.mesa);
     }
 
     const agregarInvitado = async(e)=>{
         e.preventDefault();
-        const nuevoInvi = {
-            nombre,
-            grupo,
-            mesa
+        if(nombre != ''){
+            const nuevoInvi = {
+                nombre,
+                grupo,
+                mesa
+            };
+            const result = await axios.post(`http://www.goweddings.net/admin/lista-invitados/agregarNuevo`, nuevoInvi );
+            listarInvitados();
         }
-
-        const result = await axios.post(`http://www.goweddings.net/admin/lista-invitados/agregarNuevo`, nuevoInvi );
-        console.log(result)
+        
+        
     }
 
     
 
     const eliminarInvitadoByID =  async( id )=>{
         const result = await axios.delete(`http://www.goweddings.net/admin/lista-invitados/eliminar/${id}`);
-        console.log(`invitado con id: ${id} borrado`)
+        console.log(`invitado con id: ${id} borrado`);
+        listarInvitados();
     }
 
 
@@ -103,9 +113,9 @@ const ListaInvitados = ({ titulo }) => {
             <Header className='titulo' titulo={'Lista de Invitados'}/>
             <div className='containerInputs'>
                 <form  action="#" method="post" onSubmit={agregarInvitado}>
-                    <input className='camposForm' type="text" name="nombre" id="" placeholder='Invitado' defaultValue={nombre} />
-                    <input className='camposForm' type="text" name="grupo" id="" placeholder='Grupo' defaultValue={grupo}/>
-                    <input className='camposForm' type="text" name="mesa" id="" placeholder='Mesa' defaultValue={mesa}/>
+                    <input className='camposForm' type="text" name="nombre" onChange={handleNombre} id="" placeholder='Invitado' value={nombre} />
+                    <input className='camposForm' type="text" name="grupo" onChange={handleGrupo} id="" placeholder='Grupo'  value={grupo}/>
+                    <input className='camposForm' type="text" name="mesa" onChange={handleMesa} id="" placeholder='Mesa' value={mesa}/>
                     <button type='submit' className='botonAgregar' >Agregar Invitado</button>
                 </form>
             </div>

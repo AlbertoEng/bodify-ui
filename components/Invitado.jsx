@@ -58,7 +58,7 @@ const Invitado = (props) => {
                   : <p >{mesa ?? 'null'}</p> 
               }
             </div>
-            <button className='boton eliminar'>
+            <button className='boton eliminar' onClick={handleEliminar}>
               Eliminar
             </button>
             <button className='boton editar' onClick={handleEditar}>
