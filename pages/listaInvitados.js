@@ -6,8 +6,8 @@ import Invitado from '../components/Invitado';
 const ListaInvitados = ({ titulo }) => {
     const [invitados, setInvitados] = useState([]);
     const [nombre, setNombre] = useState('');
-    const [mesa, setMesa] = useState(null);
-    const [grupo, setGrupo] = useState(null);
+    const [mesa, setMesa] = useState('');
+    const [grupo, setGrupo] = useState('');
 
     const listarInvitados = async()=>{
         const result = await axios.get('http://www.goweddings.net/admin/lista-invitados');
@@ -74,19 +74,23 @@ const ListaInvitados = ({ titulo }) => {
 
     const handleNombre = ( e )=>{
         setNombre(e.target.value)
+        console.log(e.target.value)
     }
 
     const handleGrupo = (e) =>{
         setGrupo(e.target.value);
+        console.log(e.target.value)
     }
 
     const handleMesa = (e) => {
-        setMesa(e.target.mesa);
+        setMesa(e.target.value);
+        console.log(e.target.value)
     }
 
     const agregarInvitado = async(e)=>{
         e.preventDefault();
-        if(nombre != ''){
+
+        if(nombre != '' && mesa != '' && grupo != ''){
             const nuevoInvi = {
                 nombre,
                 grupo,
@@ -94,6 +98,9 @@ const ListaInvitados = ({ titulo }) => {
             };
             const result = await axios.post(`http://www.goweddings.net/admin/lista-invitados/agregarNuevo`, nuevoInvi );
             listarInvitados();
+            setNombre('')
+            setGrupo('')
+            setMesa('')
         }
         
         
