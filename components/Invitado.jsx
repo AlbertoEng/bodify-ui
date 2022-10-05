@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 const Invitado = (props) => {
 
   const {id,  nombre, mesa, grupo, telefono} = props;
-  const {guardarMesa,guardarGrupo} = props;
+  const {guardarMesa,guardarGrupo,eliminarInvitadoByID} = props;
   const [editing, setEditing] = useState(false);
 
 
@@ -23,9 +23,15 @@ const Invitado = (props) => {
     guardarGrupo(grupo)
   }
 
+  const handleEliminar = ( e )=>{
+    eliminarInvitadoByID(id)
+  }
+
   const handleEditar = ()=>{
       setEditing(!editing);
   }
+
+
 
   return (
     <div className='card-invitado'>
