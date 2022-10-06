@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const Invitado = (props) => {
 
-  const {id,  nombre, mesa, grupo, telefono} = props;
+  const {id,confirmado,  nombre, mesa, grupo, telefono} = props;
   const {guardarMesa,guardarGrupo,eliminarInvitadoByID} = props;
   const [editing, setEditing] = useState(false);
 
@@ -40,6 +40,7 @@ const Invitado = (props) => {
             <p>{id}</p>
             <p>{nombre}</p>
             <p>{telefono}</p>
+            <p className={ confirmado ? 'confirmado': 'sin-confirmar'}>{confirmado ? 'Confirmado' : 'Sin Confirmar'}</p>
           </div>
           <div className='divBotones'>
             <div className='campoGrupo'>

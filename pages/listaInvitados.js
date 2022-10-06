@@ -69,7 +69,6 @@ const ListaInvitados = ({ titulo }) => {
         }else{
             const result = await axios.put(`http://www.goweddings.net/admin/lista-invitados/mesa/${obj.id}`,obj);
         }
-
     }
 
     const handleNombre = ( e )=>{
@@ -125,6 +124,13 @@ const ListaInvitados = ({ titulo }) => {
                     <input className='camposForm' type="text" name="mesa" onChange={handleMesa} id="" placeholder='Mesa' value={mesa}/>
                     <button type='submit' className='botonAgregar' >Agregar Invitado</button>
                 </form>
+            </div>
+            <p className='recuento'>Recuento: {invitados.length}</p>
+            <div className='opciones'>
+                <label htmlFor="todos">Todos</label>
+                <input type="radio" name="filtro" id="todos" />
+                <label htmlFor="confirmados">confirmados</label>
+                <input type="radio" name="filtro" id="confirmados" />
             </div>
             <div className='listaInvitados'> 
                 {
