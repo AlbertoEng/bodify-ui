@@ -10,7 +10,7 @@ const ListaInvitados = ({ titulo }) => {
     const [grupo, setGrupo] = useState('');
 
     const listarInvitados = async()=>{
-        const result = await axios.get('http://www.goweddings.net/admin/lista-invitados');
+        const result = await axios.get('http://www.goweddings.net:3001/admin/lista-invitados');
         const listaOrdenada = result.data.sort((a, b)=>{
             return a.id-b.id;
         })
@@ -65,9 +65,9 @@ const ListaInvitados = ({ titulo }) => {
 
     const guardarInvitado = async ( obj, dato )=>{
         if(dato == 'grupo'){
-            const result = await axios.put(`http://www.goweddings.net/admin/lista-invitados/grupo/${obj.id}`, obj );
+            const result = await axios.put(`http://www.goweddings.net:3001/admin/lista-invitados/grupo/${obj.id}`, obj );
         }else{
-            const result = await axios.put(`http://www.goweddings.net/admin/lista-invitados/mesa/${obj.id}`,obj);
+            const result = await axios.put(`http://www.goweddings.net:3001/admin/lista-invitados/mesa/${obj.id}`,obj);
         }
     }
 
@@ -95,7 +95,7 @@ const ListaInvitados = ({ titulo }) => {
                 grupo,
                 mesa
             };
-            const result = await axios.post(`http://www.goweddings.net/admin/lista-invitados/agregarNuevo`, nuevoInvi );
+            const result = await axios.post(`http://www.goweddings.net:3001/admin/lista-invitados/agregarNuevo`, nuevoInvi );
             listarInvitados();
             setNombre('')
             setGrupo('')
@@ -108,7 +108,7 @@ const ListaInvitados = ({ titulo }) => {
     
 
     const eliminarInvitadoByID =  async( id )=>{
-        const result = await axios.delete(`http://www.goweddings.net/admin/lista-invitados/eliminar/${id}`);
+        const result = await axios.delete(`http://www.goweddings.net:3001/admin/lista-invitados/eliminar/${id}`);
         console.log(`invitado con id: ${id} borrado`);
         listarInvitados();
     }
