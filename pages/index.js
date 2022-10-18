@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/Header.jsx'
+import Lectorqr from './lectorqr.js'
 
 
 export default function Home() {
-  
+
 
 
   return (
@@ -18,7 +19,10 @@ export default function Home() {
       <div className='nav'>
         <Link href='/listaInvitados'><a className='enlace'>Editar Lista de invitados</a></Link>
       </div>
-      
+      <div className='nav'>
+        <Link href='/lectorqr'><a className='enlace'>Verificacion de Codigos QR</a></Link>
+      </div>
+
     </div>
   )
 }
