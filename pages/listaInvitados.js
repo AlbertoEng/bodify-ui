@@ -8,20 +8,30 @@ const ListaInvitados = ({ titulo }) => {
     const [nombre, setNombre] = useState('');
     const [mesa, setMesa] = useState('');
     const [grupo, setGrupo] = useState('');
+    const [listarTodos, setListarTodos] = useState(true);
 
-    const listarInvitados = async()=>{
-        const result = await axios.get('https://www.goweddings.net/admin/lista-invitados');
-        const listaOrdenada = result.data.sort((a, b)=>{
-            return a.id-b.id;
-        })
-        setInvitados(listaOrdenada)
-    }
-
+    
     useEffect(()=>{
         listarInvitados();
-    },[])  
-
-
+    },[listarTodos])  
+    
+    
+    const listarInvitados = async()=>{
+        if(listarTodos){
+            const result = await axios.get('https://www.goweddings.net/admin/lista-invitados');
+            const listaOrdenada = result.data.sort((a, b)=>{
+                return a.id-b.id;
+            })
+            setInvitados(listaOrdenada)
+        }else{
+            const result = await axios.get('https://www.goweddings.net/admin/lista-confirmados');
+            const listaOrdenada = result.data.sort((a, b)=>{
+                return a.id-b.id;
+            })
+            setInvitados(listaOrdenada)
+        }
+    }
+    
     const salvarCambios = ()=>{
         
     }
@@ -71,6 +81,12 @@ const ListaInvitados = ({ titulo }) => {
         }
     }
 
+    const handlerChangeRadio = ( e)=>{
+        console.log( e.target.value);
+        setListarTodos(!listarTodos);
+        console.log(listarTodos)
+    }
+
     const handleNombre = ( e )=>{
         setNombre(e.target.value)
         console.log(e.target.value)
@@ -108,7 +124,7 @@ const ListaInvitados = ({ titulo }) => {
     
 
     const eliminarInvitadoByID =  async( id )=>{
-        const result = await axios.delete(`http://www.goweddings.net/admin/lista-invitados/eliminar/${id}`);
+        const result = await axios.delete(`http://localhost:3000/admin/lista-invitados/eliminar/${id}`);
         console.log(`invitado con id: ${id} borrado`);
         listarInvitados();
     }
@@ -128,9 +144,9 @@ const ListaInvitados = ({ titulo }) => {
             <p className='recuento'>Recuento: {invitados.length}</p>
             <div className='opciones'>
                 <label htmlFor="todos">Todos</label>
-                <input type="radio" name="filtro" id="todos" />
+                <input onChange={handlerChangeRadio} type="radio" name="filtro" id="todos" value={1} defaultChecked/>
                 <label htmlFor="confirmados">confirmados</label>
-                <input type="radio" name="filtro" id="confirmados" />
+                <input onChange={handlerChangeRadio} type="radio" name="filtro" id="confirmados" value={2} />
             </div>
             <div className='listaInvitados'> 
                 {
