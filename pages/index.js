@@ -22,7 +22,6 @@ export default function Home() {
       <div className='nav'>
         <Link href='/lectorqr'><a className='enlace'>Verificacion de Codigos QR</a></Link>
       </div>
-
     </div>
   )
 }

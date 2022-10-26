@@ -1,12 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import QrScanner from 'qr-scanner';
 
-
-
-
 const Lectorqr = () => {
-
-
     const [data, setData] = useState('');
     const [invitado, setInvitado] = useState({});
 
@@ -31,7 +26,6 @@ const Lectorqr = () => {
 
     return (
         <>
-
             <div className='videoContainer'>
                 <video className='camaraVideo' ref={refVideo}>
 
